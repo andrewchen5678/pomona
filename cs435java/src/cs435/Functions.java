@@ -66,20 +66,7 @@ public class Functions {
         deleteTripOffering(tripNumber, date, scheduledStartTime);
     }
 
-    public void deleteBus() throws SQLException, ParseException{
-        Statement stmt=con.createStatement();
-        String query="SELECT * from Bus";
-        ResultSet rs=stmt.executeQuery(query);
-        //ResultSet rs=stmt.executeQuery("select * from Bus");
-        printTable(rs,20);
-        rs.close();
-        Scanner kb=new Scanner(System.in);
-        System.out.println("which one to delete?");
-        int choice=kb.nextInt();kb.nextLine();
-        deleteBus(choice);
-    }
-
-    private void deleteBus(int choice) throws SQLException{
+    public void deleteBus(int choice) throws SQLException{
         String query="delete from Bus where BusID="+choice;
         Statement stmt=con.createStatement();
         stmt.executeUpdate(query);
@@ -91,32 +78,6 @@ public class Functions {
             deleteTripOffering(tripNumber, date, scheduledStartTime);
             rs2.close();
         }*/
-    }
-
-    public void tripRecordActual() throws SQLException, ParseException{
-        Statement stmt=con.createStatement();
-        String query="SELECT ts.TripNumber,tf.Date,ScheduledStartTime,ts.StopNumber,ScheduledArrivalTime  FROM TripStopInfo as ts,Stop as s,TripOffering as tf where ts.StopNumber=s.StopNumber and tf.TripNumber=ts.TripNumber";
-        ResultSet rs=stmt.executeQuery(query);
-        //ResultSet rs=stmt.executeQuery("select * from Bus");
-        printTableWithNum(rs,20);
-        rs.close();
-        Scanner kb=new Scanner(System.in);
-        System.out.println("which one to add record?");
-        int choice=kb.nextInt();kb.nextLine();
-        ResultSet rs2=stmt.executeQuery(query);
-        rs2.absolute(choice);
-        int tripNumber=rs2.getInt(1);
-        Date date=rs2.getDate(2);
-        Time startTime=rs2.getTime(3);
-        int stopNumber=rs2.getInt(4);
-        Time arrivalTime=rs2.getTime(5);
-        rs2.close();
-        DateFormat df = new SimpleDateFormat("H:m:s");
-        System.out.println("enter actualStartTime: H:m:s");Time actualStartTime=new Time(df.parse(kb.nextLine()).getTime());
-        System.out.println("enter actualArrivalTime: H:m:s");Time actualArrivalTime=new Time(df.parse(kb.nextLine()).getTime());
-        System.out.println("enter passenger in");int passengerIn=kb.nextInt();kb.nextLine();
-        System.out.println("enter passenger out");int passengerOut=kb.nextInt();kb.nextLine();
-        recordActualData(tripNumber, date, startTime, stopNumber, arrivalTime, actualStartTime, actualArrivalTime, passengerIn, passengerOut);
     }
 
     public void deleteTripOffering(int tripNumber, Date date, Time scheduledStartTime) throws SQLException{
@@ -132,7 +93,7 @@ public class Functions {
 //        prepStmt2.execute();
     }
 
-    private void printTable(ResultSet rs,int width) throws SQLException{
+    public static void printTable(ResultSet rs,int width) throws SQLException{
         ResultSetMetaData rsMetaData = rs.getMetaData();
         int numberOfColumns = rsMetaData.getColumnCount();
         System.out.println("resultSet MetaData column Count=" + numberOfColumns);
@@ -150,7 +111,7 @@ public class Functions {
         }
     }
 
-    private void printTableWithNum(ResultSet rs,int width) throws SQLException{
+    public void printTableWithNum(ResultSet rs,int width) throws SQLException{
         ResultSetMetaData rsMetaData = rs.getMetaData();
         int numberOfColumns = rsMetaData.getColumnCount();
         System.out.println("resultSet MetaData column Count=" + numberOfColumns);

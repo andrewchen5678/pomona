@@ -125,11 +125,11 @@ public class Functions {
         prepStmt.setDate(2, date);
         prepStmt.setTime(3, scheduledStartTime);
         prepStmt.execute();
-        PreparedStatement prepStmt2=con.prepareStatement("delete from ActualTripStopInfo where tripNumber=? and date=? and scheduledStartTime=?");
-        prepStmt2.setInt(1, tripNumber);
-        prepStmt2.setDate(2, date);
-        prepStmt2.setTime(3, scheduledStartTime);
-        prepStmt2.execute();
+//        PreparedStatement prepStmt2=con.prepareStatement("delete from ActualTripStopInfo where tripNumber=? and date=? and scheduledStartTime=?");
+//        prepStmt2.setInt(1, tripNumber);
+//        prepStmt2.setDate(2, date);
+//        prepStmt2.setTime(3, scheduledStartTime);
+//        prepStmt2.execute();
     }
 
     private void printTable(ResultSet rs,int width) throws SQLException{

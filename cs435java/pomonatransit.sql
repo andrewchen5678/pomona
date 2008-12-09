@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.0.1.1
+-- version 2.11.8.1deb1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 08, 2008 at 09:32 PM
--- Server version: 5.0.51
--- PHP Version: 5.2.6
+-- Generation Time: Dec 08, 2008 at 09:46 PM
+-- Server version: 5.0.67
+-- PHP Version: 5.2.6-2ubuntu4
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -197,23 +197,23 @@ INSERT INTO `TripStopInfo` (`TripNumber`, `StopNumber`, `SequenceNumber`, `Drivi
 -- Constraints for table `ActualTripStopInfo`
 --
 ALTER TABLE `ActualTripStopInfo`
-  ADD CONSTRAINT `actualtripstopinfo_ibfk_6` FOREIGN KEY (`ScheduledArrivalTime`) REFERENCES `tripoffering` (`ScheduledArrivalTime`),
-  ADD CONSTRAINT `actualtripstopinfo_ibfk_2` FOREIGN KEY (`StopNumber`) REFERENCES `stop` (`StopNumber`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `actualtripstopinfo_ibfk_3` FOREIGN KEY (`TripNumber`) REFERENCES `tripoffering` (`TripNumber`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `actualtripstopinfo_ibfk_4` FOREIGN KEY (`Date`) REFERENCES `tripoffering` (`Date`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `actualtripstopinfo_ibfk_5` FOREIGN KEY (`ScheduledStartTime`) REFERENCES `tripoffering` (`ScheduledStartTime`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `ActualTripStopInfo_ibfk_1` FOREIGN KEY (`ScheduledArrivalTime`) REFERENCES `TripOffering` (`ScheduledArrivalTime`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `actualtripstopinfo_ibfk_2` FOREIGN KEY (`StopNumber`) REFERENCES `Stop` (`StopNumber`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `actualtripstopinfo_ibfk_3` FOREIGN KEY (`TripNumber`) REFERENCES `TripOffering` (`TripNumber`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `actualtripstopinfo_ibfk_4` FOREIGN KEY (`Date`) REFERENCES `TripOffering` (`Date`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `actualtripstopinfo_ibfk_5` FOREIGN KEY (`ScheduledStartTime`) REFERENCES `TripOffering` (`ScheduledStartTime`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `TripOffering`
 --
 ALTER TABLE `TripOffering`
-  ADD CONSTRAINT `tripoffering_ibfk_1` FOREIGN KEY (`BusID`) REFERENCES `bus` (`BusID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tripoffering_ibfk_2` FOREIGN KEY (`TripNumber`) REFERENCES `trip` (`TripNumber`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tripoffering_ibfk_3` FOREIGN KEY (`DriverName`) REFERENCES `driver` (`DriverName`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `TripOffering_ibfk_1` FOREIGN KEY (`BusID`) REFERENCES `Bus` (`BusID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `TripOffering_ibfk_2` FOREIGN KEY (`TripNumber`) REFERENCES `Trip` (`TripNumber`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `TripOffering_ibfk_3` FOREIGN KEY (`DriverName`) REFERENCES `Driver` (`DriverName`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `TripStopInfo`
 --
 ALTER TABLE `TripStopInfo`
-  ADD CONSTRAINT `tripstopinfo_ibfk_2` FOREIGN KEY (`TripNumber`) REFERENCES `trip` (`TripNumber`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tripstopinfo_ibfk_1` FOREIGN KEY (`StopNumber`) REFERENCES `stop` (`StopNumber`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tripstopinfo_ibfk_2` FOREIGN KEY (`TripNumber`) REFERENCES `Trip` (`TripNumber`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tripstopinfo_ibfk_1` FOREIGN KEY (`StopNumber`) REFERENCES `Stop` (`StopNumber`) ON DELETE CASCADE ON UPDATE CASCADE;

@@ -16,55 +16,40 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `pomonatransit`
+-- Database: pomonatransit
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ActualTripStopInfo`
+-- Table structure for table ActualTripStopInfo
 --
 
-CREATE TABLE IF NOT EXISTS `ActualTripStopInfo` (
-  `TripNumber` int(11) NOT NULL,
-  `Date` date NOT NULL,
-  `ScheduledStartTime` time NOT NULL,
-  `StopNumber` int(11) NOT NULL,
-  `ScheduledArrivalTime` time NOT NULL,
-  `ActualStartTime` time NOT NULL,
-  `ActualArrivalTime` time NOT NULL,
-  `NumberOfPassengerIn` int(11) NOT NULL,
-  `NumberOfPassengerOut` int(11) NOT NULL,
-  PRIMARY KEY  (`TripNumber`,`Date`,`ScheduledStartTime`,`StopNumber`),
-  KEY `StopNumber` (`StopNumber`),
-  KEY `Date` (`Date`),
-  KEY `ScheduledStartTime` (`ScheduledStartTime`),
-  KEY `ScheduledArrivalTime` (`ScheduledArrivalTime`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=FIXED;
+
 
 --
--- Dumping data for table `ActualTripStopInfo`
+-- Dumping data for table ActualTripStopInfo
 --
 
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Bus`
+-- Table structure for table Bus
 --
 
-CREATE TABLE IF NOT EXISTS `Bus` (
-  `BusID` int(11) NOT NULL auto_increment,
-  `Model` varchar(50) NOT NULL,
-  `Year` char(4) NOT NULL,
-  PRIMARY KEY  (`BusID`)
+CREATE TABLE IF NOT EXISTS Bus (
+  BusID int(11) NOT NULL auto_increment,
+  Model varchar(50) NOT NULL,
+  Year char(4) NOT NULL,
+  PRIMARY KEY  (BusID)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ROW_FORMAT=FIXED AUTO_INCREMENT=11 ;
 
 --
--- Dumping data for table `Bus`
+-- Dumping data for table Bus
 --
 
-INSERT INTO `Bus` (`BusID`, `Model`, `Year`) VALUES
+INSERT INTO Bus (BusID, Model, Year) VALUES
 (1, 'toycar', '2001'),
 (3, 'trash', '1999'),
 (10, 'chafacar', '2004');
@@ -72,20 +57,20 @@ INSERT INTO `Bus` (`BusID`, `Model`, `Year`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Driver`
+-- Table structure for table Driver
 --
 
-CREATE TABLE IF NOT EXISTS `Driver` (
-  `DriverName` varchar(50) NOT NULL,
-  `DriverTelephoneNumber` char(10) NOT NULL,
-  PRIMARY KEY  (`DriverName`)
+CREATE TABLE IF NOT EXISTS Driver (
+  DriverName varchar(50) NOT NULL,
+  DriverTelephoneNumber char(10) NOT NULL,
+  PRIMARY KEY  (DriverName)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=FIXED;
 
 --
--- Dumping data for table `Driver`
+-- Dumping data for table Driver
 --
 
-INSERT INTO `Driver` (`DriverName`, `DriverTelephoneNumber`) VALUES
+INSERT INTO Driver (DriverName, DriverTelephoneNumber) VALUES
 ('aaaa', '7653564567'),
 ('aaab', '1234567890'),
 ('abcd', '1234567890'),
@@ -98,20 +83,20 @@ INSERT INTO `Driver` (`DriverName`, `DriverTelephoneNumber`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Stop`
+-- Table structure for table Stop
 --
 
-CREATE TABLE IF NOT EXISTS `Stop` (
-  `StopNumber` int(11) NOT NULL auto_increment,
-  `StopAddress` varchar(50) NOT NULL,
-  PRIMARY KEY  (`StopNumber`)
+CREATE TABLE IF NOT EXISTS Stop (
+  StopNumber int(11) NOT NULL auto_increment,
+  StopAddress varchar(50) NOT NULL,
+  PRIMARY KEY  (StopNumber)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ROW_FORMAT=FIXED AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `Stop`
+-- Dumping data for table Stop
 --
 
-INSERT INTO `Stop` (`StopNumber`, `StopAddress`) VALUES
+INSERT INTO Stop (StopNumber, StopAddress) VALUES
 (1, 'stop1'),
 (2, 'stop2'),
 (3, 'stop3');
@@ -119,72 +104,72 @@ INSERT INTO `Stop` (`StopNumber`, `StopAddress`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Trip`
+-- Table structure for table Trip
 --
 
-CREATE TABLE IF NOT EXISTS `Trip` (
-  `TripNumber` int(11) NOT NULL auto_increment,
-  `StartLocationName` varchar(50) NOT NULL,
-  `DestinationName` varchar(50) NOT NULL,
-  PRIMARY KEY  (`TripNumber`)
+CREATE TABLE IF NOT EXISTS Trip (
+  TripNumber int(11) NOT NULL auto_increment,
+  StartLocationName varchar(50) NOT NULL,
+  DestinationName varchar(50) NOT NULL,
+  PRIMARY KEY  (TripNumber)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ROW_FORMAT=FIXED AUTO_INCREMENT=6 ;
 
 --
--- Dumping data for table `Trip`
+-- Dumping data for table Trip
 --
 
-INSERT INTO `Trip` (`TripNumber`, `StartLocationName`, `DestinationName`) VALUES
+INSERT INTO Trip (TripNumber, StartLocationName, DestinationName) VALUES
 (2, 'cla', 'village'),
 (5, 'Building 8', 'Building 10');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `TripOffering`
+-- Table structure for table TripOffering
 --
 
-CREATE TABLE IF NOT EXISTS `TripOffering` (
-  `TripNumber` int(11) NOT NULL,
-  `Date` date NOT NULL,
-  `ScheduledStartTime` time NOT NULL,
-  `ScheduledArrivalTime` time NOT NULL,
-  `DriverName` varchar(50) NOT NULL,
-  `BusID` int(11) NOT NULL,
-  PRIMARY KEY  (`TripNumber`,`Date`,`ScheduledStartTime`),
-  KEY `BusID` (`BusID`),
-  KEY `DriverName` (`DriverName`),
-  KEY `Date` (`Date`),
-  KEY `ScheduledStartTime` (`ScheduledStartTime`),
-  KEY `ScheduledArrivalTime` (`ScheduledArrivalTime`)
+CREATE TABLE IF NOT EXISTS TripOffering (
+  TripNumber int(11) NOT NULL,
+  Date date NOT NULL,
+  ScheduledStartTime time NOT NULL,
+  ScheduledArrivalTime time NOT NULL,
+  DriverName varchar(50) NOT NULL,
+  BusID int(11) NOT NULL,
+  PRIMARY KEY  (TripNumber,Date,ScheduledStartTime),
+  KEY BusID (BusID),
+  KEY DriverName (DriverName),
+  KEY Date (Date),
+  KEY ScheduledStartTime (ScheduledStartTime),
+  KEY ScheduledArrivalTime (ScheduledArrivalTime)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=FIXED;
 
 --
--- Dumping data for table `TripOffering`
+-- Dumping data for table TripOffering
 --
 
-INSERT INTO `TripOffering` (`TripNumber`, `Date`, `ScheduledStartTime`, `ScheduledArrivalTime`, `DriverName`, `BusID`) VALUES
+INSERT INTO TripOffering (TripNumber, Date, ScheduledStartTime, ScheduledArrivalTime, DriverName, BusID) VALUES
 (2, '2008-12-08', '07:00:00', '09:00:00', 'driver1', 3);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `TripStopInfo`
+-- Table structure for table TripStopInfo
 --
 
-CREATE TABLE IF NOT EXISTS `TripStopInfo` (
-  `TripNumber` int(11) NOT NULL,
-  `StopNumber` int(11) NOT NULL,
-  `SequenceNumber` int(11) NOT NULL,
-  `DrivingTime` time NOT NULL,
-  PRIMARY KEY  (`TripNumber`,`StopNumber`),
-  KEY `StopNumber` (`StopNumber`)
+CREATE TABLE IF NOT EXISTS TripStopInfo (
+  TripNumber int(11) NOT NULL,
+  StopNumber int(11) NOT NULL,
+  SequenceNumber int(11) NOT NULL,
+  DrivingTime time NOT NULL,
+  PRIMARY KEY  (TripNumber,StopNumber),
+  KEY StopNumber (StopNumber)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=FIXED;
 
 --
--- Dumping data for table `TripStopInfo`
+-- Dumping data for table TripStopInfo
 --
 
-INSERT INTO `TripStopInfo` (`TripNumber`, `StopNumber`, `SequenceNumber`, `DrivingTime`) VALUES
+INSERT INTO TripStopInfo (TripNumber, StopNumber, SequenceNumber, DrivingTime) VALUES
 (2, 3, 45678, '04:00:00'),
 (5, 1, 12345, '02:00:00'),
 (5, 2, 56789, '09:00:00');
@@ -194,26 +179,40 @@ INSERT INTO `TripStopInfo` (`TripNumber`, `StopNumber`, `SequenceNumber`, `Drivi
 --
 
 --
--- Constraints for table `ActualTripStopInfo`
+-- Constraints for table ActualTripStopInfo
 --
-ALTER TABLE `ActualTripStopInfo`
-  ADD CONSTRAINT `ActualTripStopInfo_ibfk_1` FOREIGN KEY (`ScheduledArrivalTime`) REFERENCES `TripOffering` (`ScheduledArrivalTime`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `actualtripstopinfo_ibfk_2` FOREIGN KEY (`StopNumber`) REFERENCES `Stop` (`StopNumber`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `actualtripstopinfo_ibfk_3` FOREIGN KEY (`TripNumber`) REFERENCES `TripOffering` (`TripNumber`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `actualtripstopinfo_ibfk_4` FOREIGN KEY (`Date`) REFERENCES `TripOffering` (`Date`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `actualtripstopinfo_ibfk_5` FOREIGN KEY (`ScheduledStartTime`) REFERENCES `TripOffering` (`ScheduledStartTime`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+CREATE TABLE IF NOT EXISTS ActualTripStopInfo (
+  TripNumber int(11) NOT NULL,
+  Date date NOT NULL,
+  ScheduledStartTime time NOT NULL,
+  StopNumber int(11) NOT NULL,
+  ScheduledArrivalTime time NOT NULL,
+  ActualStartTime time NOT NULL,
+  ActualArrivalTime time NOT NULL,
+  NumberOfPassengerIn int(11) NOT NULL,
+  NumberOfPassengerOut int(11) NOT NULL,
+  PRIMARY KEY  (TripNumber,Date,ScheduledStartTime,StopNumber),
+  FOREIGN KEY (ScheduledArrivalTime) REFERENCES TripOffering (ScheduledArrivalTime) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (StopNumber) REFERENCES Stop (StopNumber) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (TripNumber) REFERENCES TripOffering (TripNumber) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (Date) REFERENCES TripOffering (Date) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (ScheduledStartTime) REFERENCES TripOffering (ScheduledStartTime) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=FIXED;
+
+
 
 --
--- Constraints for table `TripOffering`
+-- Constraints for table TripOffering
 --
-ALTER TABLE `TripOffering`
-  ADD CONSTRAINT `TripOffering_ibfk_1` FOREIGN KEY (`BusID`) REFERENCES `Bus` (`BusID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `TripOffering_ibfk_2` FOREIGN KEY (`TripNumber`) REFERENCES `Trip` (`TripNumber`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `TripOffering_ibfk_3` FOREIGN KEY (`DriverName`) REFERENCES `Driver` (`DriverName`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE TripOffering
+  ADD CONSTRAINT TripOffering_ibfk_1 FOREIGN KEY (BusID) REFERENCES Bus (BusID) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT TripOffering_ibfk_2 FOREIGN KEY (TripNumber) REFERENCES Trip (TripNumber) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT TripOffering_ibfk_3 FOREIGN KEY (DriverName) REFERENCES Driver (DriverName) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `TripStopInfo`
+-- Constraints for table TripStopInfo
 --
-ALTER TABLE `TripStopInfo`
-  ADD CONSTRAINT `tripstopinfo_ibfk_2` FOREIGN KEY (`TripNumber`) REFERENCES `Trip` (`TripNumber`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tripstopinfo_ibfk_1` FOREIGN KEY (`StopNumber`) REFERENCES `Stop` (`StopNumber`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE TripStopInfo
+  ADD CONSTRAINT tripstopinfo_ibfk_2 FOREIGN KEY (TripNumber) REFERENCES Trip (TripNumber) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT tripstopinfo_ibfk_1 FOREIGN KEY (StopNumber) REFERENCES Stop (StopNumber) ON DELETE CASCADE ON UPDATE CASCADE;

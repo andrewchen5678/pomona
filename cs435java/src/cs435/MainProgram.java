@@ -6,7 +6,7 @@ import java.text.*;
 public class MainProgram {
     private static Connection con;
     private static Functions f;
-    public static DateFormat df = new SimpleDateFormat("y:M:d");
+    public static DateFormat df = new SimpleDateFormat("yyyy/mm/dd");
 
     public static void main(String[] args) throws Exception{
         Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
@@ -17,6 +17,7 @@ public class MainProgram {
         f=new Functions(con);
 
         while(choice !=0){
+            System.out.println("\n\n\n\n\n");
             System.out.println("1.Display the schedule of all trips for a given StartLocationName and Destination Name");
             System.out.println("2.Delete a trip offering specified by Trip#, Date, and ScheduledStartTime");
             System.out.println("3.Display the stops of a given trip");

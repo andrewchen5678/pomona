@@ -16,4 +16,4 @@ require_once('header.php');
 <br />
 <a href="selecttripstop.php">Record the actual data</a>
 <br />
-<?php include('footer.php'); ?>
+<?php require_once('footer.php'); ?>

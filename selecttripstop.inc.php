@@ -7,7 +7,7 @@ if (!defined('ACCESS_INCLUDE'))
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 <?php
   $mysqli=getsqlconn() or die("Connect failed: ".mysqli_connect_error());
-  $query=sprintf("SELECT ts.TripNumber,tf.Date,ScheduledStartTime,ts.StopNumber,ScheduledArrivalTime  FROM TripStopInfo as ts,Stop as s,TripOffering as tf where ts.StopNumber=s.StopNumber and tf.TripNumber=ts.TripNumber");
+  $query=sprintf("SELECT ts.TripNumber,tf.Date,ScheduledStartTime,ts.StopNumber,ScheduledArrivalTime  FROM tripstopinfo as ts,stop as s,tripoffering as tf where ts.StopNumber=s.StopNumber and tf.TripNumber=ts.TripNumber");
   $result = $mysqli->query($query) or die("failed run the select query".$mysqli->error);
   echo("Select Trip:<br/>");
   echo '<table><tr>';

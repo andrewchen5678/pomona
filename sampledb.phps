@@ -1,6 +1,6 @@
 <?php
 $mysqli=getsqlconn() or die("Connect failed: ".mysqli_connect_error());
-$result = $mysqli->query("SELECT t.TripNumber,StartLocationName,DestinationName,Date,ScheduledStartTime,ScheduledArrivalTime,DriverName,tt.BusID,Model,Year FROM Trip as t,TripOffering as tt,Bus where t.TripNumber=tt.TripNumber and Bus.BusID=tt.BusID") or die("failed run the select query");
+$result = $mysqli->query("SELECT t.TripNumber,StartLocationName,DestinationName,Date,ScheduledStartTime,ScheduledArrivalTime,DriverName,tt.BusID,Model,Year FROM trip as t,tripoffering as tt,bus where t.TripNumber=tt.TripNumber and bus.BusID=tt.BusID") or die("failed run the select query");
     echo("Info:<br/>");
 //     /* Fetch the results of the query */
 //     while( $row = $result->fetch_row()){

@@ -10,9 +10,9 @@ require_once('header.php');
     {
       $dsafe=intval($d);
       //echo $dsafe;
-      $query="delete from Bus where BusID='".$dsafe."'";
+      $query="delete from bus where BusID='".$dsafe."'";
       $mysqli->query($query) or die("failed run the delete query on Bus ".$mysqli->error);
-      $query2="delete from TripOffering where BusID='".$dsafe."'";
+      $query2="delete from tripoffering where BusID='".$dsafe."'";
       $mysqli->query($query2) or die("failed run the delete query on TripOffering ".$mysqli->error);
       outputSuccess("delete success");
     //end fix the out of sync bug
@@ -23,7 +23,7 @@ require_once('header.php');
 ?>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 <?php
-  $query=sprintf("select * from Bus");
+  $query=sprintf("select * from bus");
 //   echo $query;
 //   echo mysql_real_escape_string($_POST["StartLocationName"]);
 //   echo htmlentities($_POST["DestinationName"]);

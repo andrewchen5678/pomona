@@ -12,10 +12,9 @@ Destination Name: <input type="text" name="DestinationName" />
 if(isset($_POST['Search'])):
   $mysqli=getsqlconn() or die("Connect failed: ".mysqli_connect_error());
   if($_POST["StartLocationName"]=="" && $_POST["DestinationName"]==""){
-    $query="select * from Trip,TripOffering where Trip.TripNumber=TripOffering.TripNumber";
-  }
-  else {
-    $query=sqlisafe($mysqli,"select * from Trip,TripOffering where Trip.TripNumber=TripOffering.TripNumber and StartLocationName='%s' and DestinationName='%s'",$_POST["StartLocationName"],$_POST["DestinationName"]);
+    $query="select * from trip,tripoffering where trip.TripNumber=tripoffering.TripNumber";
+  } else {
+    $query=sqlisafe($mysqli,"select * from trip,tripOffering where trip.TripNumber=tripOffering.TripNumber and StartLocationName='%s' and DestinationName='%s'",$_POST["StartLocationName"],$_POST["DestinationName"]);
   }
 //   echo $query;
 //   echo mysql_real_escape_string($_POST["StartLocationName"]);

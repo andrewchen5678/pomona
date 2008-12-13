@@ -63,7 +63,7 @@ function createDriver($name,$phone){
   else if(strlen($onlynums)!=10) return ERR_INVALIDPHONE;
   //echo $onlynums;
   $mysqli=getsqlconn() or die("Connect failed: ".mysqli_connect_error());
-  $query=sprintf("insert into Driver VALUES('%s','%s')",sqlsafe($name),sqlsafe($onlynums));
+  $query=sprintf("insert into driver VALUES('%s','%s')",sqlsafe($name),sqlsafe($onlynums));
   if(!$mysqli->query($query)){
     if($mysqli->errno==1062) return ERR_DUPLICATEKEY;
     else die($mysqli->error." error code: ".$mysqli->errno);
@@ -78,7 +78,7 @@ function createBus($model,$year){
   if(!preg_match("/([0-9]{4})$/",$year)) return ERR_INVALIDYEAR;
   //echo $onlynums;
   $mysqli=getsqlconn() or die("Connect failed: ".mysqli_connect_error());
-  $query=sprintf("insert into Bus (Model,Year) VALUES('%s','%s')",sqlsafe($model),sqlsafe($year));
+  $query=sprintf("insert into bus (Model,Year) VALUES('%s','%s')",sqlsafe($model),sqlsafe($year));
   if(!$mysqli->query($query)){
     if($mysqli->errno==1062) return ERR_DUPLICATEKEY;
     else die($mysqli->error." error code: ".$mysqli->errno);

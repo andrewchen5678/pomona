@@ -7,7 +7,7 @@ if (!defined('ACCESS_INCLUDE'))
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 <?php
   $mysqli=getsqlconn() or die("Connect failed: ".mysqli_connect_error());
-  $query=sprintf("select * from Trip");
+  $query=sprintf("select * from trip");
 //   echo $query;
 //   echo mysql_real_escape_string($_POST["StartLocationName"]);
 //   echo htmlentities($_POST["DestinationName"]);

@@ -10,7 +10,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 CREATE TABLE IF NOT EXISTS bus (
   BusID int(11) NOT NULL auto_increment,
   Model varchar(50) NOT NULL,
-  Year char(4) NOT NULL,
+  BusYear char(4) NOT NULL,
   PRIMARY KEY  (BusID)
 ) ENGINE=InnoDB ROW_FORMAT=FIXED;
 
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS trip (
 CREATE TABLE IF NOT EXISTS tripoffering (
   OfferID int(11) NOT NULL,
   TripNumber int(11) NOT NULL,
-  Date date NOT NULL,
+  OfferDate date NOT NULL,
   ScheduledStartTime time NOT NULL,
   ScheduledArrivalTime time NOT NULL,
   DriverName varchar(50) NOT NULL,
@@ -52,7 +52,8 @@ CREATE TABLE IF NOT EXISTS tripoffering (
   PRIMARY KEY  (OfferID),
   FOREIGN KEY (BusID) REFERENCES bus (BusID) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (TripNumber) REFERENCES trip (TripNumber) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (DriverName) REFERENCES driver (DriverName) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (DriverName) REFERENCES driver (DriverName) ON DELETE CASCADE ON UPDATE CASCADE,
+  UNIQUE (TripNumber,OfferDate,ScheduledStartTime)
 ) ENGINE=InnoDB ROW_FORMAT=FIXED;
 
 

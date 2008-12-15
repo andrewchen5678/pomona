@@ -10,20 +10,21 @@ Destination Name: <input type="text" name="DestinationName" />
 </form>
 <?php
 if(isset($_POST['Search'])):
-  $mysqli=getsqlconn() or die("Connect failed: ".mysqli_connect_error());
+  $mysqli=getsqlconn();
+  // if (mysqli_connect_errno()) {
+		// die("Connect failed: ".mysqli_connect_error());
+  // }
   if($_POST["StartLocationName"]=="" && $_POST["DestinationName"]==""){
     $query="select * from trip,tripoffering where trip.TripNumber=tripoffering.TripNumber";
   } else {
-    $query=sqlisafe($mysqli,"select * from trip,tripOffering where trip.TripNumber=tripOffering.TripNumber and StartLocationName='%s' and DestinationName='%s'",$_POST["StartLocationName"],$_POST["DestinationName"]);
+    $query=sprintf("select * from trip,tripOffering where trip.TripNumber=tripOffering.TripNumber and StartLocationName='%s' and DestinationName='%s'",
+	mysqlisafe($mysqli,$_POST["StartLocationName"]),
+	mysqlisafe($mysqli,$_POST["DestinationName"]));
   }
-//   echo $query;
-//   echo mysql_real_escape_string($_POST["StartLocationName"]);
-//   echo htmlentities($_POST["DestinationName"]);
-  $result = $mysqli->query($query) or die("failed run the select query");
+  //echo($query);
+  $result = $mysqli->query($query) or die("failed run the select query ".($mysqli->error));
       echo("Result:<br/>");
-  //$statement->bind_result($result);
     echo '<table><tr>';
-
     while($fieldData=$result->fetch_field()){
 	echo "<th>".$fieldData->name."</th>";
     }

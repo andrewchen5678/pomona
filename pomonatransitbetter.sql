@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS trip (
 
 
 CREATE TABLE IF NOT EXISTS tripoffering (
-  OfferID int(11) NOT NULL,
+  OfferID int(11) NOT NULL auto_increment,
   TripNumber int(11) NOT NULL,
   OfferDate date NOT NULL,
   ScheduledStartTime time NOT NULL,
@@ -69,7 +69,7 @@ FOREIGN KEY (StopNumber) REFERENCES stop (StopNumber) ON DELETE CASCADE ON UPDAT
 
 
 CREATE TABLE IF NOT EXISTS actualtripstopinfo (
-  RecordID int(11) NOT NULL,
+  RecordID int(11) NOT NULL auto_increment,
   OfferID int(11) NOT NULL,
   StopNumber int(11) NOT NULL,
   ActualStartTime time NOT NULL,

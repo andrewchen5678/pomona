@@ -6,10 +6,10 @@ require_once('selecttrip.inc.php');
 if(isset($_POST['DisplayStop'])):
   $tripDisplay=$_POST['whichdisplay'];
   if(isset($tripDisplay)){
-    $mysqli=getsqlconn() or die("Connect failed: ".mysqli_connect_error());
+    $mysqli=getsqlconn();
     //$query=sprintf("SELECT t.TripNumber,StartLocationName,DestinationName,ts.StopNumber,s.StopAddress,SequenceNumber,DrivingTime FROM TripStopInfo as ts,Stop as s, Trip as t where ts.StopNumber=s.StopNumber and ts.TripNumber=t.TripNumber and t.TripNumber='%d'",sqlsafe($tripDisplay));
-	$query=sqlisafe($mysqli,"SELECT t.TripNumber,StartLocationName,DestinationName,ts.StopNumber,s.StopAddress,SequenceNumber,DrivingTime FROM tripstopinfo as ts,Stop as s, Trip as t where ts.StopNumber=s.StopNumber and ts.TripNumber=t.TripNumber and t.TripNumber='%d'",$tripDisplay);
-	echo $query2;
+	$query=sprintf("SELECT t.TripNumber,StartLocationName,DestinationName,ts.StopNumber,s.StopAddress,SequenceNumber,DrivingTime FROM tripstopinfo as ts,Stop as s, Trip as t where ts.StopNumber=s.StopNumber and ts.TripNumber=t.TripNumber and t.TripNumber='%d'",intval($tripDisplay));
+	//echo $query;
     $result = $mysqli->query($query) or die("failed run the select query");
     echo("Result:<br/>");
 

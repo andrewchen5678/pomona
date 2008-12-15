@@ -6,8 +6,14 @@ if(isset($_POST['EditStop'])):
   $tripEdit=$_POST['whichedit'];
   $index=$_POST['whichselected'];
   if(isset($index)){
-    $mysqli=getsqlconn() or die("Connect failed: ".mysqli_connect_error());
-    $query=sprintf("INSERT INTO actualtripstopinfo (TripNumber, Date, ScheduledStartTime, StopNumber, ScheduledArrivalTime, ActualStartTime, ActualArrivalTime, NumberOfPassengerIn, NumberOfPassengerOut) VALUES (%d, '%s', '%s', %d, '%s', '%s', '%s', %d, %d)",sqlsafe($tripEdit[$index][0]),sqlsafe($tripEdit[$index][1]),sqlsafe($tripEdit[$index][2]),sqlsafe($tripEdit[$index][3]),sqlsafe($tripEdit[$index][4]),sqlsafe($_POST["ActualStartTime"]),sqlsafe($_POST["ActualArrivalTime"]),sqlsafe($_POST["NumberOfPassengerIn"]), sqlsafe($_POST["NumberOfPassengerOut"]));
+    $mysqli=getsqlconn();
+    $query=sprintf("INSERT INTO actualtripstopinfo (OfferID, StopNumber, ActualStartTime, ActualArrivalTime, NumberOfPassengerIn, NumberOfPassengerOut) VALUES (%d, %d, '%s', '%s', %d, %d)",
+	mysqlisafe($mysqli,$tripEdit[$index][0]),
+	mysqlisafe($mysqli,$tripEdit[$index][1]),
+	mysqlisafe($mysqli,$_POST["ActualStartTime"]),
+	mysqlisafe($mysqli,$_POST["ActualArrivalTime"]),
+	mysqlisafe($mysqli,$_POST["NumberOfPassengerIn"]),
+	mysqlisafe($mysqli,$_POST["NumberOfPassengerOut"]));
     echo $query;
     $mysqli->query($query) or die("failed run the select query ".$mysqli->error);
     $mysqli->close(); /* Close the connection */ 

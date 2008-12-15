@@ -6,8 +6,8 @@ if (!defined('ACCESS_INCLUDE'))
 ?>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 <?php
-  $mysqli=getsqlconn() or die("Connect failed: ".mysqli_connect_error());
-  $query=sprintf("SELECT ts.TripNumber,tf.Date,ScheduledStartTime,ts.StopNumber,ScheduledArrivalTime  FROM tripstopinfo as ts,stop as s,tripoffering as tf where ts.StopNumber=s.StopNumber and tf.TripNumber=ts.TripNumber");
+  $mysqli=getsqlconn();
+  $query=sprintf("SELECT tf.OfferID, ts.TripNumber,tf.OfferDate,ScheduledStartTime,ts.StopNumber,ScheduledArrivalTime  FROM tripstopinfo as ts,stop as s,tripoffering as tf where ts.StopNumber=s.StopNumber and tf.TripNumber=ts.TripNumber");
   $result = $mysqli->query($query) or die("failed run the select query".$mysqli->error);
   echo("Select Trip:<br/>");
   echo '<table><tr>';
@@ -20,9 +20,9 @@ if (!defined('ACCESS_INCLUDE'))
     $k=0;
     while($row = $result->fetch_row()) {
       echo '<tr>';
-	printf('<td><input type="radio" name="whichselected" value="'.$k.'"/></td>',htmlentities($row[0]));
+	echo('<td><input type="radio" name="whichselected" value="'.$k.'"/>'."<input type='hidden' name='whichedit[".$k."][0]' value='".htmlentities($row[0])."' />"."<input type='hidden' name='whichedit[".$k."][1]' value='".htmlentities($row[4])."' />".'</td>');
 	for($i=0;$i<$result->field_count;$i++){
-	  echo "<td><input type='hidden' name='whichedit[".$k."][]' value='".htmlentities($row[$i])."' />".htmlentities($row[$i])."</td>";   
+	  echo "<td>".htmlentities($row[$i])."</td>";   
 	}
       echo '</tr>';
       $k++;

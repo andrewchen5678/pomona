@@ -3,7 +3,10 @@ if (!defined('ACCESS_INCLUDE'))
 {
 	die("access denied");
 }
-$mysqli->close(); /* Close the connection */ 
+if(defined('LOAD_COMMON')){
+ //echo("closing sql connection");
+ $mysqli->close(); /* Close the connection */ 
+}
 ?>
 </div>
 </body>

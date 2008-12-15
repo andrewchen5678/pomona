@@ -4,9 +4,9 @@ if (!defined('ACCESS_INCLUDE'))
 	die("access denied");
 }
 
-if (!defined('ACCESS_FUNC'))
+if (!defined('LOAD_COMMON'))
 {
-	die("function.php has to be accessed by common.php");
+	die("load common.php first before loading functions.php");
 }
 
 require_once('constants.php'); 

@@ -6,7 +6,7 @@ if (!defined('ACCESS_INCLUDE'))
 ?>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 <?php
-  $mysqli=getsqlconn() or die("Connect failed: ".mysqli_connect_error());
+  //$mysqli=getsqlconn() or die("Connect failed: ".mysqli_connect_error());
   $query=sprintf("select * from trip");
 //   echo $query;
 //   echo mysql_real_escape_string($_POST["StartLocationName"]);
@@ -45,7 +45,6 @@ if (!defined('ACCESS_INCLUDE'))
     echo '</table>';
       /* Destroy the result set and free the memory used for it */
       $result->close();
-      $mysqli->close(); /* Close the connection */ 
 ?>
 <input type="submit" name="DisplayStop" value="Display Stop for Selected"/>
 </form>

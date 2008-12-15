@@ -2,7 +2,7 @@
 define('ACCESS_INCLUDE',true);
 require_once('common.php');
 require_once('header.php'); 
-  $mysqli=getsqlconn() or die("Connect failed: ".mysqli_connect_error());
+  //$mysqli=getsqlconn() or die("Connect failed: ".mysqli_connect_error());
   $didPost=isset($_POST['DeleteBus']);
   $listDel=$_POST['whichdel'];
   if($didPost && isset($listDel)):
@@ -49,7 +49,6 @@ require_once('header.php');
     echo '</table>';
       /* Destroy the result set and free the memory used for it */
       $result->close();
-      $mysqli->close(); /* Close the connection */ 
 ?>
 <input type="submit" name="DeleteBus" value="Delete Selected"/>
 </form>

@@ -6,7 +6,7 @@ if (!defined('ACCESS_INCLUDE'))
 ?>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 <?php
-  $mysqli=getsqlconn();
+  //$mysqli=getsqlconn() or die("Connect failed: ".mysqli_connect_error());
   $query=sprintf("SELECT tf.OfferID, ts.TripNumber,tf.OfferDate,ScheduledStartTime,ts.StopNumber,ScheduledArrivalTime  FROM tripstopinfo as ts,stop as s,tripoffering as tf where ts.StopNumber=s.StopNumber and tf.TripNumber=ts.TripNumber");
   $result = $mysqli->query($query) or die("failed run the select query".$mysqli->error);
   echo("Select Trip:<br/>");
@@ -30,7 +30,6 @@ if (!defined('ACCESS_INCLUDE'))
     echo '</table>';
       /* Destroy the result set and free the memory used for it */
       $result->close();
-      $mysqli->close(); /* Close the connection */ 
 ?>
 ActualStartTime:<input type="text" name="ActualStartTime" /><br/>
 ActualArrivalTime:<input type="text" name="ActualArrivalTime" /><br/>

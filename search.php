@@ -10,7 +10,7 @@ Destination Name: <input type="text" name="DestinationName" />
 </form>
 <?php
 if(isset($_POST['Search'])):
-  $mysqli=getsqlconn();
+  //$mysqli=getsqlconn() or die("Connect failed: ".mysqli_connect_error());
   // if (mysqli_connect_errno()) {
 		// die("Connect failed: ".mysqli_connect_error());
   // }
@@ -39,7 +39,6 @@ if(isset($_POST['Search'])):
     echo '</table>'; 
     /* Destroy the result set and free the memory used for it */
     $result->close();
-    $mysqli->close(); /* Close the connection */ 
 endif;
 ?>
 <?php include('footer.php'); ?>

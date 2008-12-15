@@ -6,7 +6,7 @@ if(isset($_POST['EditStop'])):
   $tripEdit=$_POST['whichedit'];
   $index=$_POST['whichselected'];
   if(isset($index)){
-    $mysqli=getsqlconn();
+    //$mysqli=getsqlconn() or die("Connect failed: ".mysqli_connect_error());
     $query=sprintf("INSERT INTO actualtripstopinfo (OfferID, StopNumber, ActualStartTime, ActualArrivalTime, NumberOfPassengerIn, NumberOfPassengerOut) VALUES (%d, %d, '%s', '%s', %d, %d)",
 	mysqlisafe($mysqli,$tripEdit[$index][0]),
 	mysqlisafe($mysqli,$tripEdit[$index][1]),
@@ -16,7 +16,6 @@ if(isset($_POST['EditStop'])):
 	mysqlisafe($mysqli,$_POST["NumberOfPassengerOut"]));
     echo $query;
     $mysqli->query($query) or die("failed run the select query ".$mysqli->error);
-    $mysqli->close(); /* Close the connection */ 
   }else{ outputError("please select a trip first"); }
 endif;
 ?>

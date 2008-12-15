@@ -54,12 +54,6 @@ function mysqlisafe($link,$input){
     // return $query;
 // }
 
-function getsqlconn(){
-  include('dbconfig.php'); 
-  $link= mysqli_connect($host, $dbuser, $dbpass, $database) or die("Connect failed: ".mysqli_connect_error());
-  return $link;
-}
-
 function createDriver($name,$phone){
   //if(!preg_match("/^(1\s*[-\/\.]?)?(\((\d{3})\)|(\d{3}))\s*[-\/\.]?\s*(\d{3})\s*[-\/\.]?\s*(\d{4})\s*(([xX]|[eE][xX][tT])\.?\s*(\d+))*$/",$phone)) return ERR_INVALIDPHONE;
   $onlynums = preg_replace("/[^0-9]/","",$phone);
@@ -68,7 +62,7 @@ function createDriver($name,$phone){
   else if(strlen($onlynums)==11 && $onlynums[0]=="1") $onlynums=substr($onlynums,1);
   else if(strlen($onlynums)!=10) return ERR_INVALIDPHONE;
   //echo $onlynums;
-  $mysqli=getsqlconn();
+  global $mysqli;
   $query=sprintf("insert into driver VALUES('%s','%s')",
     mysqlisafe($mysqli,$name),
     mysqlisafe($mysqli,$onlynums));
@@ -76,7 +70,7 @@ function createDriver($name,$phone){
     if($mysqli->errno==1062) return ERR_DUPLICATEKEY;
     else die($mysqli->error." error code: ".$mysqli->errno);
   }
-  $mysqli->close();
+  //$mysqli->close();
   return 0;
 }
 
@@ -85,7 +79,7 @@ function createBus($model,$year){
   if(strlen($year)!=4) return ERR_INVALIDYEAR;
   if(!preg_match("/([0-9]{4})$/",$year)) return ERR_INVALIDYEAR;
   //echo $onlynums;
-  $mysqli=getsqlconn();
+  global $mysqli;
   $query=sprintf("insert into bus (Model,BusYear) VALUES('%s','%s')",
   mysqlisafe($mysqli,$model),
   mysqlisafe($mysqli,$year));
@@ -94,7 +88,7 @@ function createBus($model,$year){
     if($mysqli->errno==1062) return ERR_DUPLICATEKEY;
     else die($mysqli->error." error code: ".$mysqli->errno);
   }
-  $mysqli->close();
+  //$mysqli->close();
   return 0;
 }
 

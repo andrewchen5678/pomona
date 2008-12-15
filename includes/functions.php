@@ -4,6 +4,11 @@ if (!defined('ACCESS_INCLUDE'))
 	die("access denied");
 }
 
+if (!defined('ACCESS_FUNC'))
+{
+	die("function.php has to be accessed by common.php");
+}
+
 require_once('constants.php'); 
 
 function redir301($url){

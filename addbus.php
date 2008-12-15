@@ -6,13 +6,11 @@ require_once('header.inc.php');
 <?php
 $didPost=isset($_POST['Search']);
 if($didPost && $_POST['Model']!="" && $_POST['Year']!=""):
-  $errorcode=createBus($_POST['Model'],$_POST['Year']);
-  if(!$errorcode){
-    outputSuccess("add success");
-  }else if($errorcode && $errorcode==ERR_INVALIDYEAR){
-    outputError("invalid Year");
-  }else{
-    outputError("other errors");
+  try{
+	createBus($_POST['Model'],$_POST['Year']);
+	outputSuccess("add success");
+  }catch(Exception $e){
+	outputError($e->getMessage());
   }
 endif;
 ?>

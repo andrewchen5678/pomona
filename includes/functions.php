@@ -58,26 +58,26 @@ function createDriver($name,$phone){
   //if(!preg_match("/^(1\s*[-\/\.]?)?(\((\d{3})\)|(\d{3}))\s*[-\/\.]?\s*(\d{3})\s*[-\/\.]?\s*(\d{4})\s*(([xX]|[eE][xX][tT])\.?\s*(\d+))*$/",$phone)) return ERR_INVALIDPHONE;
   $onlynums = preg_replace("/[^0-9]/","",$phone);
   //echo $onlynums;
-  if(strlen($onlynums)==11 && $onlynums[0]!="1") return ERR_INVALIDPHONE;
+  if(strlen($onlynums)==11 && $onlynums[0]!="1") throw new Exception("invalid phone");
   else if(strlen($onlynums)==11 && $onlynums[0]=="1") $onlynums=substr($onlynums,1);
-  else if(strlen($onlynums)!=10) return ERR_INVALIDPHONE;
+  else if(strlen($onlynums)!=10) throw new Exception("invalid phone");
   //echo $onlynums;
   global $mysqli;
   $query=sprintf("insert into driver VALUES('%s','%s')",
     mysqlisafe($mysqli,$name),
     mysqlisafe($mysqli,$onlynums));
   if(!$mysqli->query($query)){
-    if($mysqli->errno==1062) return ERR_DUPLICATEKEY;
+    if($mysqli->errno==1062) throw new Exception("driver name already exists");
     else die($mysqli->error." error code: ".$mysqli->errno);
   }
   //$mysqli->close();
-  return 0;
+  //return 0;
 }
 
 function createBus($model,$year){
   //if(!preg_match("/^(1\s*[-\/\.]?)?(\((\d{3})\)|(\d{3}))\s*[-\/\.]?\s*(\d{3})\s*[-\/\.]?\s*(\d{4})\s*(([xX]|[eE][xX][tT])\.?\s*(\d+))*$/",$phone)) return ERR_INVALIDPHONE;
-  if(strlen($year)!=4) return ERR_INVALIDYEAR;
-  if(!preg_match("/([0-9]{4})$/",$year)) return ERR_INVALIDYEAR;
+  if(strlen($year)!=4) throw new Exception("invalid Year");
+  if(!preg_match("/([0-9]{4})$/",$year)) throw new Exception("invalid Year");
   //echo $onlynums;
   global $mysqli;
   $query=sprintf("insert into bus (Model,BusYear) VALUES('%s','%s')",
@@ -85,8 +85,8 @@ function createBus($model,$year){
   mysqlisafe($mysqli,$year));
   //echo $query;
   if(!$mysqli->query($query)){
-    if($mysqli->errno==1062) return ERR_DUPLICATEKEY;
-    else die($mysqli->error." error code: ".$mysqli->errno);
+    //if($mysqli->errno==1062) throw new Exception("bus already exists");
+    die($mysqli->error." error code: ".$mysqli->errno);
   }
   //$mysqli->close();
   return 0;

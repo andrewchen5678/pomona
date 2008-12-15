@@ -8,9 +8,9 @@ if(isset($_POST['DisplayStop'])):
   if(isset($tripDisplay)){
     $mysqli=getsqlconn();
     //$query=sprintf("SELECT t.TripNumber,StartLocationName,DestinationName,ts.StopNumber,s.StopAddress,SequenceNumber,DrivingTime FROM TripStopInfo as ts,Stop as s, Trip as t where ts.StopNumber=s.StopNumber and ts.TripNumber=t.TripNumber and t.TripNumber='%d'",sqlsafe($tripDisplay));
-	$query=sprintf("SELECT t.TripNumber,StartLocationName,DestinationName,ts.StopNumber,s.StopAddress,SequenceNumber,DrivingTime FROM tripstopinfo as ts,Stop as s, Trip as t where ts.StopNumber=s.StopNumber and ts.TripNumber=t.TripNumber and t.TripNumber='%d'",intval($tripDisplay));
+	$query=sprintf("SELECT t.TripNumber,StartLocationName,DestinationName,ts.StopNumber,s.StopAddress,SequenceNumber,DrivingTime FROM tripstopinfo as ts,stop as s, trip as t where ts.StopNumber=s.StopNumber and ts.TripNumber=t.TripNumber and t.TripNumber='%d'",intval($tripDisplay));
 	//echo $query;
-    $result = $mysqli->query($query) or die("failed run the select query");
+    $result = $mysqli->query($query) or die("failed run the select query".$mysqli->error);
     echo("Result:<br/>");
 
     echo '<table><tr>';

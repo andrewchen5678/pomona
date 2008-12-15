@@ -1,7 +1,7 @@
 <? 
 define('ACCESS_INCLUDE',true);
 require_once('common.php');
-require_once('header.php'); 
+require_once('header.inc.php'); 
 ?>
 <?php
 $didPost=isset($_POST['Search']);
@@ -26,4 +26,4 @@ Driver Phone: <input type="text" name="DriverPhone" /><?  if($didPost && $_POST[
 <input type="submit" name="Search" value="Add Driver"/>
 </form>
 
-<?php include('footer.php'); ?>
+<?php require_once('footer.inc.php'); ?>

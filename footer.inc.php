@@ -1,7 +1,8 @@
 <?php
 if (!defined('ACCESS_INCLUDE'))
 {
-	die("access denied");
+	$selfname=$_SERVER['PHP_SELF'];
+	die("direct access to $selfname denied");
 }
 if(defined('LOAD_COMMON')){
  //echo("closing sql connection");

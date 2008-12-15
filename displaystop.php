@@ -1,8 +1,8 @@
 <? 
 define('ACCESS_INCLUDE',true);
 require_once('common.php');
-require_once('header.php');
-require_once('selecttrip.inc.php');  
+require_once('header.inc.php');
+require_once('listtrip.inc.php');  
 if(isset($_POST['DisplayStop'])):
   $tripDisplay=$_POST['whichdisplay'];
   if(isset($tripDisplay)){
@@ -32,4 +32,4 @@ if(isset($_POST['DisplayStop'])):
   }else{ outputError("please select a trip first"); }
 endif;
 ?>
-<?php include('footer.php'); ?>
+<?php require_once('footer.inc.php'); ?>

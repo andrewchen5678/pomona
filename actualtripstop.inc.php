@@ -1,7 +1,8 @@
 <?
 if (!defined('ACCESS_INCLUDE'))
 {
-	die("access denied");
+	$selfname=$_SERVER['PHP_SELF'];
+	die("direct access to $selfname denied");
 }
 ?>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">

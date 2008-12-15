@@ -1,7 +1,7 @@
 <? define('ACCESS_INCLUDE',true);
 require_once('common.php');
-require_once('header.php');
-require_once('selecttripstop.inc.php');  
+require_once('header.inc.php');
+require_once('actualtripstop.inc.php');  
 if(isset($_POST['EditStop'])):
   $tripEdit=$_POST['whichedit'];
   $index=$_POST['whichselected'];
@@ -19,4 +19,4 @@ if(isset($_POST['EditStop'])):
   }else{ outputError("please select a trip first"); }
 endif;
 ?>
-<?php include('footer.php'); ?>
+<?php require_once('footer.inc.php'); ?>

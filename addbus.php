@@ -1,7 +1,7 @@
 <? 
 define('ACCESS_INCLUDE',true);
 require_once('common.php');
-require_once('header.php'); 
+require_once('header.inc.php'); 
 ?>
 <?php
 $didPost=isset($_POST['Search']);
@@ -24,4 +24,4 @@ Year: <input type="text" name="Year" maxlength="4"/><?  if($didPost && $_POST['Y
 <input type="submit" name="Search" value="Add Bus"/>
 </form>
 
-<?php include('footer.php'); ?>
+<?php require_once('footer.inc.php'); ?>

@@ -1,7 +1,8 @@
 <?php
 if (!defined('ACCESS_INCLUDE'))
 {
-	die("access denied");
+	$selfname=$_SERVER['PHP_SELF'];
+	die("direct access to $selfname denied");
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -21,7 +22,7 @@ if (!defined('ACCESS_INCLUDE'))
     <li><a href="addbus.php"><span>add bus</span></a></li>
     <li><a href="delbus.php"><span>remove bus</span></a></li>
     <li><a href="displaystop.php"><span>display stop</span></a></li>
-    <li><a href="selecttripstop.php"><span>Record the actual data</span></a></li>
+    <li><a href="actualtripstop.php"><span>Record the actual data</span></a></li>
 <!--    <li><a href="http://www.free-css.com/"><span>CSS Templates</span></a></li>
     <li><a href="http://www.free-css.com/"><span>CSS Layouts</span></a></li>
     <li><a href="http://www.free-css.com/"><span>CSS Books</span></a></li>

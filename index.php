@@ -1,7 +1,7 @@
 <?php 
 define('ACCESS_INCLUDE',true);
 require_once('common.php');
-require_once('header.php');
+require_once('header.inc.php');
 ?>
 <br />
 <a href="search.php">search</a>
@@ -14,6 +14,6 @@ require_once('header.php');
 <br />
 <a href="displaystop.php">display stop</a>
 <br />
-<a href="selecttripstop.php">Record the actual data</a>
+<a href="actualtripstop.php">Record the actual data</a>
 <br />
-<?php require_once('footer.php'); ?>
+<?php require_once('footer.inc.php'); ?>

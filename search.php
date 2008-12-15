@@ -1,7 +1,7 @@
-<? 
+<?php
 define('ACCESS_INCLUDE',true);
 require_once('common.php');
-require_once('header.php'); 
+require_once('header.inc.php'); 
 ?>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 StartLocationName: <input type="text" name="StartLocationName" />
@@ -41,4 +41,4 @@ if(isset($_POST['Search'])):
     $result->close();
 endif;
 ?>
-<?php include('footer.php'); ?>
+<?php require_once('footer.inc.php'); ?>

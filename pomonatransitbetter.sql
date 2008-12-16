@@ -78,7 +78,8 @@ CREATE TABLE IF NOT EXISTS actualtripstopinfo (
   NumberOfPassengerOut int(11) NOT NULL,
   PRIMARY KEY  (RecordID),
   FOREIGN KEY (OfferID) REFERENCES tripoffering (OfferID) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (StopNumber) REFERENCES tripstopinfo (StopNumber) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (StopNumber) REFERENCES tripstopinfo (StopNumber) ON DELETE CASCADE ON UPDATE CASCADE,
+  UNIQUE (OfferID,StopNumber)
 ) ENGINE=InnoDB ROW_FORMAT=FIXED;
 
 INSERT INTO trip (TripNumber, StartLocationName, DestinationName) VALUES(1, 'cla', 'village');

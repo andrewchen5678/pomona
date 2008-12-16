@@ -8,10 +8,14 @@ if (!defined('ACCESS_INCLUDE'))
 if(get_magic_quotes_gpc()) {
   die('magic_quotes_gpc is on, please turn it off by setting "magic_quotes_gpc = Off" in php.ini or "php_flag magic_quotes_gpc Off" in .htaccess before running');
 }
+if(ini_get('register_globals') == 1){
+  die('register global is on, please turn it off first');
+}
 set_magic_quotes_runtime(0);
 define("INCLUDE_DIR", "includes/");
 define("LOAD_COMMON", TRUE);
 require_once(INCLUDE_DIR.'dbconfig.php');
 $mysqli=mysqli_connect($host, $dbuser, $dbpass, $database) or die("Connect failed: ".mysqli_connect_error());
+//require_once(INCLUDE_DIR.'classes.php'); 
 require_once(INCLUDE_DIR.'functions.php'); 
 ?>

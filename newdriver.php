@@ -1,4 +1,4 @@
-<? 
+<?php
 define('ACCESS_INCLUDE',true);
 require_once('common.php');
 require_once('header.inc.php'); 
@@ -15,9 +15,9 @@ if($didPost && $_POST['DriverName']!="" && $_POST['DriverPhone']!=""):
 endif;
 ?>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-Driver Name: <input type="text" name="DriverName" /><?  if($didPost && $_POST['DriverName']=="") outputError("please enter name"); ?>
+Driver Name: <input type="text" name="DriverName" /><?php if($didPost && $_POST['DriverName']=="") outputError("please enter name"); ?>
 <br/>
-Driver Phone: <input type="text" name="DriverPhone" /><?  if($didPost && $_POST['DriverPhone']=="") echo outputError("please enter phone"); ?>
+Driver Phone: <input type="text" name="DriverPhone" /><?php if($didPost && $_POST['DriverPhone']=="") outputError("please enter phone"); ?>
 <br/>
 <input type="submit" name="Search" value="Add Driver"/>
 </form>

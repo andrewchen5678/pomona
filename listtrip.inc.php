@@ -1,4 +1,4 @@
-<?
+<?php
 if (!defined('ACCESS_INCLUDE'))
 {
 	$selfname=$_SERVER['PHP_SELF'];

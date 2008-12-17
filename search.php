@@ -6,9 +6,10 @@ require_once('header.inc.php');
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 StartLocationName: <input type="text" name="StartLocationName" />
 Destination Name: <input type="text" name="DestinationName" />
-<input type="submit" name="Search" />
+<input type="submit" name="Search" value="Search" />
 </form>
 <?php
+//var_dump($_POST['Search']);
 if(isset($_POST['Search'])):
 	if($_POST["StartLocationName"]=="" && $_POST["DestinationName"]==""){
 		$query="select * from trip,tripoffering where trip.TripNumber=tripoffering.TripNumber";

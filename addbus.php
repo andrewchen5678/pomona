@@ -15,9 +15,9 @@ if($didPost && $_POST['Model']!="" && $_POST['Year']!=""):
 endif;
 ?>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-Model: <input type="text" name="Model" /><?  if($didPost && $_POST['Model']=="") outputError("please enter Model"); ?>
+Model: <input type="text" name="Model" /><?php if($didPost && $_POST['Model']=="") outputError("please enter Model"); ?>
 <br/>
-Year: <input type="text" name="Year" maxlength="4"/><?  if($didPost && $_POST['Year']=="") echo outputError("please enter Year"); ?>
+Year: <input type="text" name="Year" maxlength="4"/><?php if($didPost && $_POST['Year']=="") echo outputError("please enter Year"); ?>
 <br/>
 <input type="submit" name="Search" value="Add Bus"/>
 </form>
